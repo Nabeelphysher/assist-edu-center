@@ -6,6 +6,7 @@ import CategoriesSection from '@/components/CategoriesSection';
 import PopularArticles from '@/components/PopularArticles';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import KnowledgeBase from '@/components/KnowledgeBase';
 
 const SupportPortal = () => {
   return (
@@ -15,6 +16,7 @@ const SupportPortal = () => {
       <CategoriesSection />
       <PopularArticles />
       <ContactSection />
+      <KnowledgeBase />
       <Footer />
     </div>
   );
