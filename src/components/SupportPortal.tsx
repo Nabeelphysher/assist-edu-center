@@ -63,7 +63,7 @@ const SupportPortal = () => {
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <GraduationCap className="w-5 h-5 text-white" />
                 </div>
-                <span className="ml-3 text-xl font-bold text-gray-900">EduSystem Support</span>
+                <span className="ml-3 text-xl font-bold text-gray-900">Albedo Support</span>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
