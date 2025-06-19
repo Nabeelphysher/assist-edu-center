@@ -4,6 +4,7 @@ import { Search, Users, GraduationCap, FileText, Settings, Phone, MessageCircle,
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
 const SupportPortal = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -67,11 +68,11 @@ const SupportPortal = () => {
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Students</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Teachers</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Reports</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contact</a>
+              <Link to="/" className="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</Link>
+              <Link to="/students" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Students</Link>
+              <Link to="/teachers" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Teachers</Link>
+              <Link to="/reports" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Reports</Link>
+              <Link to="/contact" className="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contact</Link>
             </nav>
           </div>
         </div>
@@ -110,18 +111,20 @@ const SupportPortal = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category) => (
-              <Card key={category.id} className="hover:shadow-lg transition-shadow cursor-pointer group">
-                <CardHeader>
-                  <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <category.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <CardTitle className="text-xl font-semibold">{category.title}</CardTitle>
-                  <CardDescription className="text-gray-600">{category.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-gray-500">{category.articles} articles</p>
-                </CardContent>
-              </Card>
+              <Link key={category.id} to={`/${category.id}`}>
+                <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full">
+                  <CardHeader>
+                    <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      <category.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-semibold">{category.title}</CardTitle>
+                    <CardDescription className="text-gray-600">{category.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-500">{category.articles} articles</p>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
@@ -162,7 +165,7 @@ const SupportPortal = () => {
                 <MessageCircle className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Live Chat</h3>
                 <p className="text-gray-600 mb-4">Get instant help from our support team</p>
-                <Button className="w-full">Start Chat</Button>
+                <Button className="w-full" onClick={() => alert('Live chat would open here')}>Start Chat</Button>
               </CardContent>
             </Card>
             <Card className="hover:shadow-lg transition-shadow">
@@ -170,7 +173,9 @@ const SupportPortal = () => {
                 <Mail className="w-12 h-12 text-green-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Email Support</h3>
                 <p className="text-gray-600 mb-4">Send us a detailed message</p>
-                <Button variant="outline" className="w-full">Send Email</Button>
+                <Link to="/contact">
+                  <Button variant="outline" className="w-full">Send Email</Button>
+                </Link>
               </CardContent>
             </Card>
             <Card className="hover:shadow-lg transition-shadow">
@@ -178,7 +183,7 @@ const SupportPortal = () => {
                 <Phone className="w-12 h-12 text-purple-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Phone Support</h3>
                 <p className="text-gray-600 mb-4">Call us during business hours</p>
-                <Button variant="outline" className="w-full">Call Now</Button>
+                <Button variant="outline" className="w-full" onClick={() => alert('Phone: +1 (555) 123-4567')}>Call Now</Button>
               </CardContent>
             </Card>
           </div>
@@ -192,9 +197,9 @@ const SupportPortal = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Support</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white">Contact Us</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white">Live Chat</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white">Documentation</a></li>
+                <li><Link to="/contact" className="text-gray-300 hover:text-white">Contact Us</Link></li>
+                <li><a href="#" className="text-gray-300 hover:text-white" onClick={() => alert('Live chat would open here')}>Live Chat</a></li>
+                <li><Link to="/" className="text-gray-300 hover:text-white">Documentation</Link></li>
                 <li><a href="#" className="text-gray-300 hover:text-white">System Status</a></li>
               </ul>
             </div>
@@ -210,9 +215,9 @@ const SupportPortal = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white">Student Management</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white">Teacher Portal</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white">Reports</a></li>
+                <li><Link to="/students" className="text-gray-300 hover:text-white">Student Management</Link></li>
+                <li><Link to="/teachers" className="text-gray-300 hover:text-white">Teacher Portal</Link></li>
+                <li><Link to="/reports" className="text-gray-300 hover:text-white">Reports</Link></li>
                 <li><a href="#" className="text-gray-300 hover:text-white">Settings</a></li>
               </ul>
             </div>
